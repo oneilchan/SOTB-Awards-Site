@@ -1,0 +1,95 @@
+{% load static %}
+<!-- .navbar-light .navbar-nav .nav-link {
+  color: #000;
+} -->
+<!DOCTYPE html>
+<html lang="en-GB">
+    <head>
+        <title>
+            Voting Page
+        </title>
+        <link rel="stylesheet" href="{% static 'awards/css/awards.css' %}"/>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <title>Material Design for Bootstrap</title>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+        <!-- Google Fonts Roboto -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+        <!-- MDB -->
+        <link rel="stylesheet" href="{% static 'awards/css/mdb.dark.min.css' %}" />
+        <!-- Custom styles -->
+        <link rel="stylesheet" href="{% static 'awards/css/awardshtml.css' %}" />
+    </head>
+    <body>
+       <!-- Navbar -->
+       <nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark">
+        <div class="container">
+          <a class="navbar-brand" href="https://discord.gg/7M3nJ3Pp"
+            ><img
+              id="MDB-logo"
+              src="{% static 'awards/img/startrekicon.png' %}"
+              alt="Site Logo"
+              draggable="false"
+              height="60"
+          /></a>
+          <h1>Strangest of the bunch Mid-Year Awards</h1>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto align-items-center">
+              <li class="nav-item">
+                <a class="nav-link mx-2" href="{% url 'awards:awards' %}"><i class="fas fa-plus-circle pe-2"></i>Home</a>
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link mx-2" href="#!"><i class="fas fa-bell pe-2"></i>Results</a>
+              </li> -->
+              <!-- <li class="nav-item">
+                <a class="nav-link mx-2" href="#!"><i class="fas fa-heart pe-2"></i>Trips</a>
+              </li>
+              <li class="nav-item ms-3">
+                <a class="btn btn-black btn-rounded" href="#!">Sign in</a> -->
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Navbar -->
+      <!-- Navbar -->
+        <!-- MDB -->
+        <script type="text/javascript" src="{% static 'awards/js/mdb.min.js' %}"></script>
+        <!-- Custom scripts -->
+        <script type="text/javascript" src="{% static 'awards/js/script.js' %}"></script>
+        <!-- This is where the voting page begins -->
+        <br><br><br><br>
+        <h1>
+           Award: "{{ award.award_title }}"
+        </h1>
+        <h4>
+            Nominees:
+        </h4>
+        <form action="{% url 'awards:vote' id %}" method="post">
+        {% csrf_token %}
+        {% for optionz in OptionListing %}
+        <img src="{% static 'awards/img/nominees' %}/{{ optionz.option_text }}.jpg" id="formnominees">
+        <!-- Default radio -->
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="votingfor" id="flexRadioDefault1" value="{{ optionz.id }}"/>
+            <label class="form-check-label" for="{{ optionz }}">{{ optionz }}</label>
+        </div>
+
+        {% endfor %}
+        <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>

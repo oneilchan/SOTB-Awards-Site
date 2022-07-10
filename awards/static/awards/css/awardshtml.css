@@ -1,0 +1,14 @@
+body{
+    background-image: url(https://www.toptal.com/designers/subtlepatterns/uploads/memphis-mini-dark.png);
+}
+.navbar-light .navbar-nav .nav-link {
+    color: #000;
+  } 
+#formnominees{
+    width:110px;
+    height:110px;
+}
+#resultsgraph{
+    height:550px;
+    width:550px;
+}
