@@ -6,6 +6,8 @@ from django.urls import reverse
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+from . import static
+from django.templatetags.static import static
 # Create your views here.
 
 def awards(request):
@@ -46,18 +48,30 @@ def vote(request, award_id):
 def results(request, award_id):
     award = get_object_or_404(Award, pk=award_id)
     OptionListing = list(award.options_set.all())
-    try:
-        os.remove('midyearsotbawards/staticfiles/awards/img/graphs/my_plot.png')
-    except FileNotFoundError:
-        votes=[]
-        mylabels = []
-        for option in OptionListing:
-            votes+=[option.votes]
-            mylabels+=["{0}({1})".format(option, option.votes)]
-        z = np.array(votes)
-        plt.pie(z, labels = mylabels)
-        midyearsotbawards/staticfiles
-        plt.savefig('midyearsotbawards/staticfiles/awards/img/graphs/my_plot.png') 
+    print(static('awards/img/graphs/my_plot.png'))
+    print("hello")
+    # try:
+    #     print(static('awards/img/graphs/my_plot.png'))
+    #     midyearsotbawards/awards/static
+    #     os.remove(".{0}".format(static('awards/img/graphs/my_plot.png')))
+    # except FileNotFoundError:
+    #     votes=[]
+    #     mylabels = []
+    #     for option in OptionListing:
+    #         votes+=[option.votes]
+    #         mylabels+=["{0}({1})".format(option, option.votes)]
+    #     z = np.array(votes)
+    #     plt.pie(z, labels = mylabels)
+    #     plt.savefig(static('awards/img/graphs/my_plot.png'))
+
+    votes=[]
+    mylabels = []
+    for option in OptionListing:
+        votes+=[option.votes]
+        mylabels+=["{0}({1})".format(option, option.votes)]
+    z = np.array(votes)
+    plt.pie(z, labels = mylabels)
+    plt.savefig('awards/static/awards/img/graphs/my_plot.png')
     return render(request, 'awards/results.html', {'awards': Award, 'OptionListing': OptionListing})
 
         
