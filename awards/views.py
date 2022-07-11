@@ -47,7 +47,7 @@ def results(request, award_id):
     award = get_object_or_404(Award, pk=award_id)
     OptionListing = list(award.options_set.all())
     try:
-        os.remove('/home/isaiah/Coding/Python/Practice/DjangoLearning/midyearsotbawards/awards/static/awards/img/graphs/my_plot.png')
+        os.remove('midyearsotbawards/staticfiles/awards/img/graphs/my_plot.png')
     except FileNotFoundError:
         votes=[]
         mylabels = []
@@ -56,7 +56,8 @@ def results(request, award_id):
             mylabels+=["{0}({1})".format(option, option.votes)]
         z = np.array(votes)
         plt.pie(z, labels = mylabels)
-        plt.savefig('/awards/static/awards/img/graphs/my_plot.png') 
+        midyearsotbawards/staticfiles
+        plt.savefig('midyearsotbawards/staticfiles/awards/img/graphs/my_plot.png') 
     return render(request, 'awards/results.html', {'awards': Award, 'OptionListing': OptionListing})
 
         
