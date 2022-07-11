@@ -7,7 +7,7 @@
 from django.contrib import admin
 
 from .models import Options, Award
-
+CSRF_TRUSTED_ORIGINS=['https://sotbawards.azurewebsites.net']
 
 class OptionsInline(admin.StackedInline):
     model = Options
