@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    "whitenoise.runserver_nostatic",
     'django.contrib.staticfiles',
 ]
 
@@ -125,11 +126,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-# STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
 
-if DEBUG:
-        STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static')]
-else:
-        STATIC_ROOT = os.path.join(BASE_DIR, 'static')
