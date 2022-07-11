@@ -14,7 +14,7 @@ class OptionsInline(admin.StackedInline):
     extra = 3
 
 
-class AwardAdmin(admin.ModelAdmin):
+class AwardAdmin(admin.ModelAdmin,):
     fieldsets = [
         (None,               {'fields': ['award_title']}), (None,               {'fields': ['description_text']}), (None,               {'fields': ['upload']})
     ]
