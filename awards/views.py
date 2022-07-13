@@ -8,6 +8,7 @@ import numpy as np
 import os
 from . import static
 from django.templatetags.static import static
+import glob
 # Create your views here.
 
 def awards(request):
@@ -48,8 +49,6 @@ def vote(request, award_id):
 def results(request, award_id):
     award = get_object_or_404(Award, pk=award_id)
     OptionListing = list(award.options_set.all())
-    print(static('awards/img/graphs/my_plot.png'))
-    print("hello")
     # try:
     #     print(static('awards/img/graphs/my_plot.png'))
     #     midyearsotbawards/awards/static
@@ -63,14 +62,18 @@ def results(request, award_id):
     #     z = np.array(votes)
     #     plt.pie(z, labels = mylabels)
     #     plt.savefig(static('awards/img/graphs/my_plot.png'))
-
+    files = glob.glob('awards/static/awards/img/graphs/*')
+    for f in files:
+        os.remove(f)
     votes=[]
     mylabels = []
     for option in OptionListing:
         votes+=[option.votes]
         mylabels+=["{0}({1})".format(option, option.votes)]
     z = np.array(votes)
+    plt.clf()
     plt.pie(z, labels = mylabels)
+    files = glob.glob('awards/static/awards/img/graphs/*')
     plt.savefig('awards/static/awards/img/graphs/my_plot.png')
     return render(request, 'awards/results.html', {'awards': Award, 'OptionListing': OptionListing})
 
