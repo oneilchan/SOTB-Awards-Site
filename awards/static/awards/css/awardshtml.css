@@ -39,7 +39,7 @@ body{
     
 }
 /* css for desktop on home page */
-@media only screen and (min-width : 992px){
+@media only screen and (min-width : 600px){
 
     [id="discordwidget"]{
         width: 350px;
