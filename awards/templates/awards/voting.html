@@ -26,7 +26,7 @@
        <!-- Navbar -->
        <nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark">
         <div class="container">
-          <a class="navbar-brand" href="https://discord.gg/7M3nJ3Pp"
+          <a class="navbar-brand" href="https://discord.gg/S5WgxNfXN6"
             ><img
               id="MDB-logo"
               src="{% static 'awards/img/startrekicon.png' %}"
@@ -81,15 +81,16 @@
         <form action="{% url 'awards:vote' id %}" method="post">
         {% csrf_token %}
         {% for optionz in OptionListing %}
-        <img src="{% static 'awards/img/nominees' %}/{{ optionz.option_text }}.jpg" id="formnominees">
-        <!-- Default radio -->
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="votingfor" id="flexRadioDefault1" value="{{ optionz.id }}"/>
-            <label class="form-check-label" for="{{ optionz }}">{{ optionz }}</label>
+        <div id="votingform">
+          <img src="{% static 'awards/img/nominees' %}/{{ optionz.option_text }}.jpg" id="formnomineesimg">
+          <!-- Default radio -->
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="votingfor" id="flexRadioDefault1" value="{{ optionz.id }}"/>
+              <label class="form-check-label" for="{{ optionz }}">{{ optionz }}</label>
+          </div>
         </div>
-
         {% endfor %}
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" id="votingsubmit">
         </form>
     </body>
 </html>

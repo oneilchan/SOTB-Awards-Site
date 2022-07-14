@@ -21,7 +21,7 @@
         <!-- Navbar -->
 <nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark">
     <div class="container">
-      <a class="navbar-brand" href="https://discord.gg/7M3nJ3Pp"
+      <a class="navbar-brand" href="https://discord.gg/S5WgxNfXN6"
         ><img
           id="MDB-logo"
           src="{% static 'awards/img/startrekicon.png' %}"
@@ -65,19 +65,26 @@
     <script type="text/javascript" src="{% static 'awards/js/mdb.min.js' %}"></script>
     <!-- Custom scripts -->
     <script type="text/javascript" src="{% static 'awards/js/script.js' %}"></script>
+    
+    <iframe src="https://discord.com/widget?id=423827615242256386&theme=dark" id="discordwidget" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+
+
+
+
     <!-- This is where the awards are shown in card form -->
-        <br><br><br><br>
-        {% for award in AwardList %}
-        <div class="card" style="max-height:75%; max-width:50%">
-          <img src="{% static 'awards/useruploads' %}/{{ award.upload.name|cut:"awards/static/awards/useruploads" }}"/>
-          <div class="card-body">
-            <h5 class="card-title">{{ award }}</h5>
-            <p class="card-text">{{ award.description_text }}</p>
-            <a href="{% url 'awards:voting' award.id %}" class="btn btn-primary">Vote here</a>
+        <div id="homeawardcontainer">
+          {% for award in AwardList %}
+          <div class="card" id="awardshomecard">
+            <img src="{% static 'awards/useruploads' %}/{{ award.upload.name|cut:"awards/static/awards/useruploads" }}" id="awardshomeimg"/>
+            <div class="card-body">
+              <h5 class="card-title">{{ award }}</h5>
+              <p class="card-text">{{ award.description_text }}</p>
+              <a href="{% url 'awards:voting' award.id %}" class="btn btn-primary">Vote here</a>
+            </div>
           </div>
+          <br><br>
+          {% endfor %}
         </div>
-        <br><br>
-        {% endfor %}
         <!-- {% for award in AwardList %}
         <h1>
             {{ award }}
